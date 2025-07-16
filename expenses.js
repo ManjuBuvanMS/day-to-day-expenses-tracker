@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const db = require("../db/DB");
+const { Parser } = require("json2csv");
 
 const SECRET = process.env.JWT_SECRET || "default_secret";
 
@@ -91,6 +92,50 @@ router.put("/expenses/:id", authenticateToken, (req, res) => {
       }
 
       res.status(200).json({ message: "Expense updated" });
+    }
+  );
+});
+// ✅ FILTER expenses (daily, weekly, monthly)
+router.get("/expenses/filter", authenticateToken, (req, res) => {
+  const type = req.query.type;
+  const userId = req.user.id;
+
+  let interval;
+
+  if (type === "daily") interval = "1 DAY";
+  else if (type === "weekly") interval = "7 DAY";
+  else if (type === "monthly") interval = "30 DAY";
+  else return res.status(400).json({ message: "Invalid filter type" });
+
+  db.query(
+    `SELECT * FROM expenses WHERE userId = ? AND created_at >= DATE_SUB(NOW(), INTERVAL ${interval}) ORDER BY created_at DESC`,
+    [userId],
+    (err, results) => {
+      if (err) {
+        console.error("❌ Filter error:", err);
+        return res.status(500).json({ message: "Filter failed" });
+      }
+      res.json(results);
+    }
+  );
+});
+
+router.get("/expenses/download", authenticateToken, (req, res) => {
+  db.query(
+    "SELECT amount, description, category, created_at FROM expenses WHERE userId = ? ORDER BY created_at DESC",
+    [req.user.id],
+    (err, results) => {
+      if (err) {
+        console.error("❌ Download error:", err);
+        return res.status(500).json({ message: "Download failed" });
+      }
+
+      const parser = new Parser({ fields: ["amount", "description", "category", "created_at"] });
+      const csv = parser.parse(results);
+
+      res.header("Content-Type", "text/csv");
+      res.attachment("expenses.csv");
+      res.send(csv);
     }
   );
 });
