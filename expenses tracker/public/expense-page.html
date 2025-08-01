@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container-box">
+    <h2>Expense Tracker</h2>
+
+    <form id="expenseForm" class="form-inline">
+      <input type="text" id="description" placeholder="Expense Name" required />
+      <input type="number" id="amount" placeholder="Amount" required />
+      <select id="category" required>
+        <option value="">Category</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Salary">Salary</option>
+        <option value="Entertainment">Entertainment</option>
+      </select>
+      <input type="date" id="date" required />
+      <button type="submit">Add Expense</button>
+    </form>
+
+    <table id="expenseTable">
+      <thead>
+        <tr>
+          <th>Expense Name</th>
+          <th>Amount</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="expenseList">
+        <!-- Filled by JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ✅ Buy Premium Button -->
+  <div style="text-align: right; padding: 20px;">
+    <button id="buyPremium" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">
+      Buy Premium Membership
+    </button>
+  </div>
+  <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+
+  <script src="expense.js"></script>
+</body>
+</html>

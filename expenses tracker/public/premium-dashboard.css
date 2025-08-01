@@ -1,0 +1,169 @@
+/* ===== RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #11151c;
+  color: #e5ecf4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 30px;
+  line-height: 1.6;
+}
+
+/* ===== HEADERS ===== */
+h1 {
+  color: #4bd6b8;
+  text-align: center;
+  font-size: 2.6rem;
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #68c3f8;
+  margin: 25px 0 10px;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #68c3f830;
+  padding-bottom: 5px;
+}
+
+/* ===== PREMIUM BANNER ===== */
+#premium-message {
+  background: #1b222d;
+  border-left: 6px solid #4bd6b8;
+  padding: 18px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #d7fffa;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 15px rgba(75, 214, 184, 0.1);
+}
+
+/* ===== FORM ===== */
+form {
+  background-color: #1a1f28;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+  margin-bottom: 30px;
+}
+
+input, select, button {
+  padding: 12px;
+  margin: 8px 10px 8px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+input, select {
+  background-color: #262d38;
+  color: #ffffff;
+  border: 1px solid #384150;
+  width: 200px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #4bd6b8;
+}
+
+button {
+  background-color: #4bd6b8;
+  color: #0f131a;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #3dc2a5;
+}
+
+/* ===== EXPENSES & LEADERBOARD CARDS ===== */
+#expense-list, #leaderboard {
+  background-color: #1c2330;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  max-height: 500px;
+  overflow-y: auto;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+/* Card Items */
+#expense-list li,
+#leaderboard div {
+  background-color: #262d38;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+  border-left: 5px solid #4bd6b8;
+}
+
+#expense-list li:hover,
+#leaderboard div:hover {
+  transform: scale(1.02);
+  background-color: #2d3543;
+}
+
+/* ===== FLEX LAYOUT FOR SIDE-BY-SIDE ===== */
+#expense-list, #leaderboard {
+  width: 48%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* ===== PAGINATION & DROPDOWNS ===== */
+#per-page, #filter-type {
+  background-color: #262d38;
+  color: #fff;
+  border: 1px solid #384150;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+/* Scrollbar styling */
+#expense-list::-webkit-scrollbar,
+#leaderboard::-webkit-scrollbar {
+  width: 6px;
+}
+#expense-list::-webkit-scrollbar-thumb,
+#leaderboard::-webkit-scrollbar-thumb {
+  background-color: #4bd6b8;
+  border-radius: 3px;
+}
+
+/* ===== FILTER/DOWNLOAD AREA ===== */
+#day-expenses-section button {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+#day-expenses-section {
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #1a2029;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  #expense-list, #leaderboard {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  input, select, button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
